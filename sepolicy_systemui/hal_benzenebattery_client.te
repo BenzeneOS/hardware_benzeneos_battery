@@ -1,0 +1,3 @@
+# SystemUI runs as systemui_app on Pixel 8+ (platform_app on older devices, granted in ../sepolicy)
+allow systemui_app hal_benzenebattery_service:service_manager find;
+binder_call(systemui_app, hal_benzenebattery)

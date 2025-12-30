@@ -1,0 +1,2 @@
+# Benzene Battery HAL service type
+type hal_benzenebattery_service, service_manager_type, hal_service_type;

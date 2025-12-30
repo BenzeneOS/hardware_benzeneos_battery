@@ -1,0 +1,11 @@
+<!-- Copyright (C) 2025 Amaan Qureshi <contact@amaanq.com>
+     SPDX-License-Identifier: Apache-2.0 -->
+<compatibility-matrix version="9.0" type="framework">
+    <hal format="aidl">
+        <name>vendor.benzeneos.battery</name>
+        <interface>
+            <name>IBattery</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>
