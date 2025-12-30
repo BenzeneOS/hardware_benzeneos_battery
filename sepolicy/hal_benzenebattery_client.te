@@ -1,0 +1,17 @@
+# Allow clients to use Benzene Battery HAL
+
+# system_server can find and call the HAL
+allow system_server hal_benzenebattery_service:service_manager find;
+binder_call(system_server, hal_benzenebattery)
+
+# platform_app (Settings) can find and call the HAL
+allow platform_app hal_benzenebattery_service:service_manager find;
+binder_call(platform_app, hal_benzenebattery)
+
+# priv_app can also access
+allow priv_app hal_benzenebattery_service:service_manager find;
+binder_call(priv_app, hal_benzenebattery)
+
+# system_app (SystemUI, etc) can find and call the HAL
+allow system_app hal_benzenebattery_service:service_manager find;
+binder_call(system_app, hal_benzenebattery)

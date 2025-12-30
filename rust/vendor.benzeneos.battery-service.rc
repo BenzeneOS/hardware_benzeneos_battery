@@ -1,0 +1,10 @@
+service vendor.benzeneos.battery /vendor/bin/hw/vendor.benzeneos.battery-service
+    class hal
+    user system
+    group system
+    interface aidl vendor.benzeneos.battery.IBattery/default
+
+on property:vendor.all.modules.ready=1 && property:vendor.all.devices.ready=1
+    # Set permissions for charge limit sysfs nodes
+    chown system system /sys/devices/platform/google,charger/charge_stop_level
+    chown system system /sys/devices/platform/google,charger/charge_start_level

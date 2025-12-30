@@ -1,0 +1,42 @@
+# Benzene Battery HAL SELinux Policy
+
+type hal_benzenebattery, domain;
+type hal_benzenebattery_exec, file_type, exec_type, vendor_file_type;
+
+# HAL service setup
+init_daemon_domain(hal_benzenebattery)
+binder_use(hal_benzenebattery)
+binder_call(hal_benzenebattery, system_server)
+binder_call(hal_benzenebattery, servicemanager)
+
+# Register as HAL service
+add_service(hal_benzenebattery, hal_benzenebattery_service)
+
+# Allow system_server to call us
+binder_call(system_server, hal_benzenebattery)
+
+# Allow system_app (Settings) to call us
+binder_call(system_app, hal_benzenebattery)
+binder_call(hal_benzenebattery, system_app)
+
+# system_app already covered above (includes SystemUI)
+
+# Read/write battery sysfs (/sys/class/power_supply/battery/*)
+allow hal_benzenebattery sysfs_batteryinfo:dir r_dir_perms;
+allow hal_benzenebattery sysfs_batteryinfo:file rw_file_perms;
+allow hal_benzenebattery sysfs_batteryinfo:lnk_file read;
+
+# Access charger sysfs (/sys/class/power_supply/battery/charge_limit, charging_policy, etc)
+allow hal_benzenebattery sysfs_chargelevel:dir r_dir_perms;
+allow hal_benzenebattery sysfs_chargelevel:file rw_file_perms;
+
+# Access /sys/devices/platform/google,charger/* for battery defender, dock defend
+allow hal_benzenebattery sysfs:dir r_dir_perms;
+allow hal_benzenebattery sysfs:file rw_file_perms;
+allow hal_benzenebattery sysfs:lnk_file read;
+
+# Generic sysfs access for symlink traversal
+r_dir_file(hal_benzenebattery, sysfs_type)
+
+# vndbinder access
+vndbinder_use(hal_benzenebattery)

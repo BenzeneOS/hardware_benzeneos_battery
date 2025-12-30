@@ -1,0 +1,33 @@
+// Copyright (C) 2025 Amaan Qureshi <contact@amaanq.com>
+// SPDX-License-Identifier: Apache-2.0
+
+aidl_interface {
+    name: "vendor.benzeneos.battery",
+    owner: "benzeneos",
+    vendor_available: true,
+    host_supported: true,
+    srcs: ["vendor/benzeneos/battery/*.aidl"],
+    stability: "vintf",
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+    frozen: true,
+    backend: {
+        cpp: {
+            enabled: true,
+        },
+        java: {
+            enabled: true,
+            sdk_version: "module_current",
+        },
+        rust: {
+            enabled: true,
+        },
+        ndk: {
+            enabled: true,
+        },
+    },
+}

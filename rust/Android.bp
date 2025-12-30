@@ -1,0 +1,19 @@
+// Copyright (C) 2025 Amaan Qureshi <contact@amaanq.com>
+// SPDX-License-Identifier: Apache-2.0
+
+rust_binary {
+    name: "vendor.benzeneos.battery-service",
+    relative_install_path: "hw",
+    vendor: true,
+    prefer_rlib: true,
+    srcs: ["src/main.rs"],
+    edition: "2021",
+    rustlibs: [
+        "libandroid_logger",
+        "libbinder_rs",
+        "liblog_rust",
+        "vendor.benzeneos.battery-V1-rust",
+    ],
+    init_rc: ["vendor.benzeneos.battery-service.rc"],
+    vintf_fragments: ["vendor.benzeneos.battery-service.xml"],
+}
