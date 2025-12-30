@@ -19,9 +19,7 @@ binder_call(system_server, hal_benzenebattery)
 binder_call(system_app, hal_benzenebattery)
 binder_call(hal_benzenebattery, system_app)
 
-# Allow systemui_app (SystemUI) to call us
-binder_call(systemui_app, hal_benzenebattery)
-binder_call(hal_benzenebattery, systemui_app)
+# system_app already covered above (includes SystemUI)
 
 # Read/write battery sysfs (/sys/class/power_supply/battery/*)
 allow hal_benzenebattery sysfs_batteryinfo:dir r_dir_perms;
